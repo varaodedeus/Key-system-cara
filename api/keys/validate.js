@@ -1,3 +1,5 @@
+import { Redis } from '@upstash/redis';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -18,15 +20,17 @@ export default async function handler(req, res) {
       });
     }
 
-    const { kv } = await import('@vercel/kv');
-    const keyData = await kv.get(`key:${key}`);
+    const redis = Redis.fromEnv();
+    const keyDataRaw = await redis.get(`key:${key}`);
 
-    if (!keyData) {
+    if (!keyDataRaw) {
       return res.status(404).json({ 
         success: false, 
         message: 'Key inválida' 
       });
     }
+
+    const keyData = typeof keyDataRaw === 'string' ? JSON.parse(keyDataRaw) : keyDataRaw;
 
     if (keyData.expiresAt <= Date.now()) {
       return res.status(403).json({ 
@@ -50,7 +54,7 @@ export default async function handler(req, res) {
     keyData.uses = (keyData.uses || 0) + 1;
     keyData.lastUse = Date.now();
 
-    await kv.set(`key:${key}`, keyData);
+    await redis.set(`key:${key}`, JSON.stringify(keyData));
 
     return res.status(200).json({ 
       success: true, 
@@ -65,7 +69,7 @@ export default async function handler(req, res) {
     console.error('Erro na validação:', error);
     return res.status(500).json({ 
       success: false, 
-      message: 'Erro interno' 
+      message: 'Erro interno: ' + error.message
     });
   }
 }
