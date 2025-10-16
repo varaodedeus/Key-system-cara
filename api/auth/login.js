@@ -1,3 +1,5 @@
+import { Redis } from '@upstash/redis';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -18,10 +20,19 @@ export default async function handler(req, res) {
       });
     }
 
-    const { kv } = await import('@vercel/kv');
-    const user = await kv.get(`user:${email}`);
+    const redis = Redis.fromEnv();
+    const userData = await redis.get(`user:${email}`);
+    
+    if (!userData) {
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Email ou senha incorretos' 
+      });
+    }
 
-    if (!user || user.password !== password) {
+    const user = typeof userData === 'string' ? JSON.parse(userData) : userData;
+
+    if (user.password !== password) {
       return res.status(401).json({ 
         success: false, 
         message: 'Email ou senha incorretos' 
@@ -45,7 +56,7 @@ export default async function handler(req, res) {
     console.error('Erro no login:', error);
     return res.status(500).json({ 
       success: false, 
-      message: 'Erro ao fazer login' 
+      message: 'Erro ao fazer login: ' + error.message
     });
   }
 }
