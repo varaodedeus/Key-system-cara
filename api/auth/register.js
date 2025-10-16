@@ -1,3 +1,5 @@
+import { Redis } from '@upstash/redis';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -25,9 +27,9 @@ export default async function handler(req, res) {
       });
     }
 
-    const { kv } = await import('@vercel/kv');
+    const redis = Redis.fromEnv();
     
-    const existingUser = await kv.get(`user:${email}`);
+    const existingUser = await redis.get(`user:${email}`);
     if (existingUser) {
       return res.status(409).json({ 
         success: false, 
@@ -43,7 +45,7 @@ export default async function handler(req, res) {
       keyCount: 0
     };
 
-    await kv.set(`user:${email}`, userData);
+    await redis.set(`user:${email}`, JSON.stringify(userData));
 
     return res.status(201).json({ 
       success: true, 
@@ -59,7 +61,7 @@ export default async function handler(req, res) {
     console.error('Erro no registro:', error);
     return res.status(500).json({ 
       success: false, 
-      message: 'Erro ao criar conta' 
+      message: 'Erro ao criar conta: ' + error.message
     });
   }
 }
