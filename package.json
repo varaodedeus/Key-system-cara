@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@upstash/redis": "^1.28.0"
+    "redis": "^4.6.12"
   },
   "engines": {
     "node": ">=18.x"
