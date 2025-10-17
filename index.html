@@ -3,320 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KeySystem Pro - Dashboard</title>
+    <title>Key System - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
         body {
-            background: #0a0a0a;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 10%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-        }
-        .glass {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glow {
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
-        }
-        .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: all 0.3s ease;
+            min-height: 100vh;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
-        }
-        .key-card {
-            background: linear-gradient(135deg, rgba(30, 30, 50, 0.8) 0%, rgba(20, 20, 35, 0.9) 100%);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            transition: all 0.3s ease;
-        }
-        .key-card:hover {
-            border-color: rgba(168, 85, 247, 0.5);
-            transform: translateY(-2px);
-        }
-        .stat-card {
-            background: linear-gradient(135deg, rgba(30, 30, 50, 0.6) 0%, rgba(20, 20, 35, 0.8) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        }
-        input:focus {
-            border-color: #a855f7 !important;
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1) !important;
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .7; }
+        .card {
+            backdrop-filter: blur(10px);
+            background: rgba(17, 24, 39, 0.95);
         }
     </style>
 </head>
-<body class="min-h-screen p-4">
-    <div id="app" class="max-w-7xl mx-auto">
+<body class="p-4">
+    <div id="app" class="max-w-6xl mx-auto">
         
         <!-- Tela de Login -->
-        <div id="loginScreen" class="fade-in">
-            <div class="glass rounded-2xl p-8 max-w-md mx-auto mt-20 glow">
-                <div class="text-center mb-8">
-                    <div class="inline-block p-4 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 mb-4">
-                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                    </div>
-                    <h1 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 mb-2">
-                        KeySystem Pro
-                    </h1>
-                    <p class="text-gray-400 text-sm">Gerencie suas licenças com segurança</p>
-                </div>
-                
-                <div id="errorMessage" class="hidden bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl mb-6 text-sm"></div>
-                
-                <div class="space-y-4 mb-6">
-                    <div>
-                        <label class="text-gray-400 text-sm font-medium mb-2 block">Email</label>
-                        <input type="email" id="loginEmail" placeholder="seu@email.com" 
-                            class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition">
-                    </div>
-                    <div>
-                        <label class="text-gray-400 text-sm font-medium mb-2 block">Senha</label>
-                        <input type="password" id="loginPassword" placeholder="••••••••" 
-                            class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition">
-                    </div>
-                </div>
+        <div id="loginScreen" class="card rounded-lg p-8 max-w-md mx-auto mt-20 shadow-2xl border border-purple-500">
+            <div class="text-center mb-6">
+                <div class="text-6xl mb-4">🔐</div>
+                <h1 class="text-4xl font-bold text-purple-400 mb-2">Key System</h1>
+                <p class="text-gray-400">Entre na sua conta</p>
+            </div>
+            
+            <div id="errorMessage" class="hidden bg-red-500 bg-opacity-20 border border-red-500 text-red-400 px-4 py-3 rounded mb-4"></div>
+            
+            <div class="mb-4">
+                <label class="text-gray-400 text-sm mb-2 block">Email</label>
+                <input type="email" id="loginEmail" placeholder="seu@email.com" 
+                    class="w-full bg-gray-800 border border-purple-500 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
 
-                <button onclick="login()" class="w-full btn-primary text-white font-bold py-3.5 rounded-xl mb-4">
-                    Entrar
+            <div class="mb-6">
+                <label class="text-gray-400 text-sm mb-2 block">Senha</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" 
+                    class="w-full bg-gray-800 border border-purple-500 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
+
+            <button onclick="login()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded transition mb-4">
+                Entrar
+            </button>
+
+            <div class="text-center">
+                <button onclick="showRegister()" class="text-purple-400 hover:text-purple-300 text-sm">
+                    Não tem conta? Cadastre-se
                 </button>
-
-                <div class="text-center">
-                    <button onclick="showRegister()" class="text-purple-400 hover:text-purple-300 text-sm font-medium transition">
-                        Não tem conta? <span class="font-bold">Cadastre-se</span>
-                    </button>
-                </div>
             </div>
         </div>
 
         <!-- Tela de Registro -->
-        <div id="registerScreen" class="hidden fade-in">
-            <div class="glass rounded-2xl p-8 max-w-md mx-auto mt-20 glow">
-                <div class="text-center mb-8">
-                    <div class="inline-block p-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 mb-4">
-                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-                        </svg>
-                    </div>
-                    <h1 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2">
-                        Criar Conta
-                    </h1>
-                    <p class="text-gray-400 text-sm">Comece a usar gratuitamente</p>
-                </div>
-                
-                <div id="registerErrorMessage" class="hidden bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl mb-6 text-sm"></div>
-                
-                <div class="space-y-4 mb-6">
-                    <div>
-                        <label class="text-gray-400 text-sm font-medium mb-2 block">Nome de Usuário</label>
-                        <input type="text" id="registerUsername" placeholder="Seu nome" 
-                            class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition">
-                    </div>
-                    <div>
-                        <label class="text-gray-400 text-sm font-medium mb-2 block">Email</label>
-                        <input type="email" id="registerEmail" placeholder="seu@email.com" 
-                            class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition">
-                    </div>
-                    <div>
-                        <label class="text-gray-400 text-sm font-medium mb-2 block">Senha</label>
-                        <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" 
-                            class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition">
-                    </div>
-                </div>
+        <div id="registerScreen" class="hidden card rounded-lg p-8 max-w-md mx-auto mt-20 shadow-2xl border border-purple-500">
+            <div class="text-center mb-6">
+                <div class="text-6xl mb-4">👤</div>
+                <h1 class="text-4xl font-bold text-purple-400 mb-2">Criar Conta</h1>
+                <p class="text-gray-400">Cadastre-se gratuitamente</p>
+            </div>
+            
+            <div id="registerErrorMessage" class="hidden bg-red-500 bg-opacity-20 border border-red-500 text-red-400 px-4 py-3 rounded mb-4"></div>
+            
+            <div class="mb-4">
+                <label class="text-gray-400 text-sm mb-2 block">Nome de Usuário</label>
+                <input type="text" id="registerUsername" placeholder="Seu nome" 
+                    class="w-full bg-gray-800 border border-purple-500 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
 
-                <button onclick="register()" class="w-full btn-primary text-white font-bold py-3.5 rounded-xl mb-4">
-                    Criar Conta
+            <div class="mb-4">
+                <label class="text-gray-400 text-sm mb-2 block">Email</label>
+                <input type="email" id="registerEmail" placeholder="seu@email.com" 
+                    class="w-full bg-gray-800 border border-purple-500 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
+
+            <div class="mb-6">
+                <label class="text-gray-400 text-sm mb-2 block">Senha</label>
+                <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" 
+                    class="w-full bg-gray-800 border border-purple-500 rounded px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
+
+            <button onclick="register()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded transition mb-4">
+                Criar Conta
+            </button>
+
+            <div class="text-center">
+                <button onclick="showLogin()" class="text-purple-400 hover:text-purple-300 text-sm">
+                    Já tem conta? Faça login
                 </button>
-
-                <div class="text-center">
-                    <button onclick="showLogin()" class="text-purple-400 hover:text-purple-300 text-sm font-medium transition">
-                        Já tem conta? <span class="font-bold">Faça login</span>
-                    </button>
-                </div>
             </div>
         </div>
 
         <!-- Dashboard -->
-        <div id="dashboard" class="hidden fade-in">
+        <div id="dashboard" class="hidden">
             <!-- Header -->
-            <div class="glass rounded-2xl p-6 mb-6 glow">
+            <div class="card rounded-lg p-6 mb-6 shadow-xl border border-purple-500">
                 <div class="flex items-center justify-between flex-wrap gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
-                            </svg>
-                        </div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-4xl">🔑</div>
                         <div>
-                            <h1 class="text-2xl font-bold text-white" id="welcomeMessage">Dashboard</h1>
-                            <p class="text-gray-400 text-sm" id="userEmail">carregando...</p>
+                            <h1 class="text-2xl font-bold text-white" id="welcomeMessage">Olá!</h1>
+                            <p class="text-gray-400 text-sm" id="userEmail">email@example.com</p>
                         </div>
                     </div>
-                    <button onclick="logout()" class="bg-red-500/20 hover:bg-red-500/30 border border-red-500/50 text-red-400 px-5 py-2.5 rounded-xl transition font-medium">
-                        Sair
+                    <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition">
+                        🚪 Sair
                     </button>
                 </div>
             </div>
 
             <!-- Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div class="stat-card glass rounded-2xl p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-gray-400 text-sm font-medium">Total de Keys</span>
-                        <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="text-4xl font-black text-white mb-1" id="totalKeys">0</div>
-                    <p class="text-xs text-gray-500">Todas as licenças</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="card rounded-lg p-6 shadow-xl border border-purple-500">
+                    <div class="text-gray-400 text-sm mb-2">Total de Keys</div>
+                    <div class="text-3xl font-bold text-white" id="totalKeys">0</div>
                 </div>
-
-                <div class="stat-card glass rounded-2xl p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-gray-400 text-sm font-medium">Keys Ativas</span>
-                        <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="text-4xl font-black text-green-400 mb-1" id="activeKeys">0</div>
-                    <p class="text-xs text-gray-500">Em funcionamento</p>
+                <div class="card rounded-lg p-6 shadow-xl border border-green-500">
+                    <div class="text-gray-400 text-sm mb-2">Keys Ativas</div>
+                    <div class="text-3xl font-bold text-green-400" id="activeKeys">0</div>
                 </div>
-
-                <div class="stat-card glass rounded-2xl p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-gray-400 text-sm font-medium">Expiradas</span>
-                        <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="text-4xl font-black text-red-400 mb-1" id="expiredKeys">0</div>
-                    <p class="text-xs text-gray-500">Tempo esgotado</p>
+                <div class="card rounded-lg p-6 shadow-xl border border-red-500">
+                    <div class="text-gray-400 text-sm mb-2">Keys Expiradas</div>
+                    <div class="text-3xl font-bold text-red-400" id="expiredKeys">0</div>
                 </div>
             </div>
 
             <!-- Create Key -->
-            <div class="glass rounded-2xl p-6 mb-6">
-                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Gerar Nova Key
-                </h2>
-                <div class="flex gap-4 flex-wrap items-end">
-                    <div class="flex-1 min-w-[200px]">
-                        <label class="text-gray-400 text-sm font-medium mb-2 block">Duração</label>
-                        <select id="keyDuration" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none transition">
-                            <option value="1">1 hora</option>
-                            <option value="24" selected>24 horas (1 dia)</option>
-                            <option value="168">7 dias</option>
-                            <option value="720">30 dias</option>
-                            <option value="8760">1 ano</option>
-                        </select>
-                    </div>
-                    <button onclick="createKey()" class="btn-primary text-white px-8 py-3 rounded-xl font-bold whitespace-nowrap">
-                        🎉 Gerar Key
+            <div class="card rounded-lg p-6 mb-6 shadow-xl border border-purple-500">
+                <h2 class="text-xl font-bold text-white mb-4">➕ Criar Nova Key</h2>
+                <div class="flex gap-4 flex-wrap">
+                    <select id="keyDuration" class="bg-gray-800 border border-purple-500 rounded px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option value="1">1 hora</option>
+                        <option value="24" selected>24 horas</option>
+                        <option value="168">7 dias</option>
+                        <option value="720">30 dias</option>
+                        <option value="8760">1 ano</option>
+                    </select>
+                    <button onclick="createKey()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded transition font-bold">
+                        🔑 Gerar Key
                     </button>
                 </div>
-                <div id="newKeyDisplay" class="mt-6 hidden">
-                    <div class="bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/30 rounded-xl p-4">
-                        <p class="text-green-400 text-sm font-medium mb-3 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            Key criada com sucesso!
-                        </p>
-                        <div class="flex items-center gap-3 flex-wrap">
-                            <code id="newKeyCode" class="flex-1 bg-black/50 text-purple-300 px-4 py-3 rounded-lg font-mono text-lg font-bold min-w-0 break-all"></code>
-                            <button onclick="copyNewKey()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg transition font-medium whitespace-nowrap">
-                                📋 Copiar
-                            </button>
-                        </div>
+                <div id="newKeyDisplay" class="mt-4 hidden">
+                    <p class="text-gray-400 text-sm mb-2">✅ Nova key criada:</p>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <code id="newKeyCode" class="bg-gray-800 text-purple-400 px-4 py-2 rounded flex-1 font-mono text-lg min-w-0 break-all"></code>
+                        <button onclick="copyNewKey()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition whitespace-nowrap">
+                            📋 Copiar
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Keys List -->
-            <div class="glass rounded-2xl p-6">
-                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                    </svg>
-                    Suas Licenças
-                </h2>
-                <div id="keysList" class="space-y-4">
-                    <div class="text-gray-500 text-center py-12">
-                        <div class="pulse inline-block mb-4">
-                            <svg class="w-16 h-16 mx-auto text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
-                            </svg>
-                        </div>
-                        <p class="text-lg font-medium">Nenhuma key criada ainda</p>
-                        <p class="text-sm mt-2">Crie sua primeira licença acima!</p>
-                    </div>
+            <div class="card rounded-lg p-6 shadow-xl border border-purple-500">
+                <h2 class="text-xl font-bold text-white mb-4">📋 Minhas Keys</h2>
+                <div id="keysList" class="space-y-3">
+                    <p class="text-gray-400 text-center py-8">Carregando keys...</p>
                 </div>
             </div>
 
             <!-- API Info -->
-            <div class="glass rounded-2xl p-6 mt-6 border-2 border-blue-500/30">
-                <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                    Integração Roblox
-                </h2>
-                <p class="text-gray-400 mb-3 text-sm">Use este endpoint para validar keys no seu script:</p>
-                <div class="bg-black/50 rounded-lg p-4 border border-gray-700">
-                    <code id="apiEndpoint" class="text-blue-400 font-mono text-sm break-all block">
-                        https://seu-projeto.vercel.app/api/keys/validate
-                    </code>
-                </div>
+            <div class="card rounded-lg p-6 mt-6 shadow-xl border border-blue-500">
+                <h2 class="text-xl font-bold text-white mb-4">📡 Use no Roblox</h2>
+                <p class="text-gray-400 mb-2">Endpoint de validação:</p>
+                <code id="apiEndpoint" class="bg-gray-800 text-blue-400 px-4 py-2 rounded block font-mono text-sm break-all">
+                    https://seu-projeto.vercel.app/api/keys/validate
+                </code>
             </div>
         </div>
     </div>
 
     <script>
+        // CONFIGURE AQUI A URL DA SUA API
         const API_URL = window.location.origin + '/api';
+        
         let currentUser = null;
         let userKeys = [];
 
+        // Mostrar/Esconder telas
         function showLogin() {
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('registerScreen').classList.add('hidden');
@@ -344,6 +205,7 @@
             setTimeout(() => errorDiv.classList.add('hidden'), 5000);
         }
 
+        // Registro
         async function register() {
             const username = document.getElementById('registerUsername').value;
             const email = document.getElementById('registerEmail').value;
@@ -375,6 +237,7 @@
             }
         }
 
+        // Login
         async function login() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
@@ -405,12 +268,14 @@
             }
         }
 
+        // Logout
         function logout() {
             currentUser = null;
             userKeys = [];
             showLogin();
         }
 
+        // Carregar Dashboard
         function loadDashboard() {
             document.getElementById('welcomeMessage').textContent = `Olá, ${currentUser.username}!`;
             document.getElementById('userEmail').textContent = currentUser.email;
@@ -418,12 +283,15 @@
             loadKeys();
         }
 
+        // Carregar Keys (simulado - você precisa criar endpoint /api/keys/list)
         function loadKeys() {
+            // Por enquanto, vazio
             userKeys = [];
             updateStats();
             renderKeys();
         }
 
+        // Criar Key
         async function createKey() {
             const duration = document.getElementById('keyDuration').value;
 
@@ -453,25 +321,20 @@
             }
         }
 
+        // Copiar nova key
         function copyNewKey() {
             const key = document.getElementById('newKeyCode').textContent;
             navigator.clipboard.writeText(key);
-            
-            const btn = event.target;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '✅ Copiado!';
-            btn.classList.add('bg-green-600');
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.classList.remove('bg-green-600');
-            }, 2000);
+            alert('✅ Key copiada!');
         }
 
+        // Copiar key da lista
         function copyKey(key) {
             navigator.clipboard.writeText(key);
-            alert('✅ Key copiada para área de transferência!');
+            alert('✅ Key copiada!');
         }
 
+        // Atualizar estatísticas
         function updateStats() {
             const now = Date.now();
             const active = userKeys.filter(k => k.expiresAt > now).length;
@@ -482,21 +345,12 @@
             document.getElementById('expiredKeys').textContent = expired;
         }
 
+        // Renderizar lista de keys
         function renderKeys() {
             const container = document.getElementById('keysList');
             
             if (userKeys.length === 0) {
-                container.innerHTML = `
-                    <div class="text-gray-500 text-center py-12">
-                        <div class="pulse inline-block mb-4">
-                            <svg class="w-16 h-16 mx-auto text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
-                            </svg>
-                        </div>
-                        <p class="text-lg font-medium">Nenhuma key criada ainda</p>
-                        <p class="text-sm mt-2">Crie sua primeira licença acima!</p>
-                    </div>
-                `;
+                container.innerHTML = '<p class="text-gray-400 text-center py-8">Você ainda não tem keys. Crie sua primeira!</p>';
                 return;
             }
 
@@ -504,22 +358,50 @@
             container.innerHTML = userKeys.map(keyData => {
                 const isExpired = keyData.expiresAt <= now;
                 const timeRemaining = getTimeRemaining(keyData.expiresAt);
-                const status = isExpired ? 'Expirada' : (keyData.hwid ? 'Ativa' : 'Disponível');
-                const statusColor = isExpired ? 'red' : (keyData.hwid ? 'green' : 'yellow');
                 
                 return `
-                    <div class="key-card rounded-xl p-5">
+                    <div class="bg-gray-800 border ${isExpired ? 'border-red-500 opacity-60' : 'border-purple-500'} rounded-lg p-4">
                         <div class="flex items-center justify-between flex-wrap gap-4">
                             <div class="flex-1 min-w-0">
-                                <div class="flex items-center gap-3 mb-3 flex-wrap">
-                                    <code class="text-xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 break-all">
-                                        ${keyData.key}
-                                    </code>
-                                    <span class="bg-${statusColor}-500/20 text-${statusColor}-400 text-xs px-3 py-1 rounded-full font-bold whitespace-nowrap border border-${statusColor}-500/30">
-                                        ${status}
-                                    </span>
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <code class="text-lg font-mono text-purple-400 font-bold break-all">${keyData.key}</code>
+                                    ${isExpired ? '<span class="bg-red-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap">EXPIRADA</span>' : ''}
                                 </div>
                                 <div class="flex items-center gap-4 text-sm text-gray-400 flex-wrap">
-                                    <span class="flex items-center gap-1.5">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0
+                                    <span>⏰ ${timeRemaining}</span>
+                                    <span>📅 ${new Date(keyData.createdAt).toLocaleDateString('pt-BR')}</span>
+                                    ${keyData.hwid ? '<span class="text-green-400">✓ Ativada</span>' : ''}
+                                </div>
+                            </div>
+                            <button onclick="copyKey('${keyData.key}')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition whitespace-nowrap">
+                                📋 Copiar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Calcular tempo restante
+        function getTimeRemaining(expiresAt) {
+            const diff = expiresAt - Date.now();
+            if (diff <= 0) return 'Expirada';
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const days = Math.floor(hours / 24);
+            
+            if (days > 0) return `${days}d ${hours % 24}h`;
+            return `${hours}h`;
+        }
+
+        // Enter para login
+        document.getElementById('loginPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') login();
+        });
+
+        document.getElementById('registerPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') register();
+        });
+    </script>
+</body>
+</html>
